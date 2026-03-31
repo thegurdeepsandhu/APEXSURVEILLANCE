@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Apex Surveillance Solutions Limited – CCTV & Networking Toronto GTA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #0a0a0a; --dark: #111318; --card: #16191f;
+      --border: rgba(255,255,255,0.07); --gold: #c9a84c; --gold-light: #e8c97a;
+      --white: #f5f3ee; --muted: #8a8c91;
+      --font-display: 'Cormorant Garamond', serif; --font-body: 'DM Sans', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--white); font-family: var(--font-body); font-weight: 300; overflow-x: hidden; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 4rem; background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); transition: padding .3s;
+    }
+    .nav-logo { text-decoration: none; line-height: 1; }
+    .nav-logo-main { font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--gold); letter-spacing: .06em; display: block; }
+    .nav-logo-sub { font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); display: block; margin-top: .1rem; }
+    .nav-links { display: flex; gap: 2.4rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: .82rem; letter-spacing: .12em; text-transform: uppercase; transition: color .25s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta { padding: .55rem 1.5rem; border: 1px solid var(--gold); color: var(--gold); background: transparent; font-family: var(--font-body); font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; transition: background .25s, color .25s; }
+    .nav-cta:hover { background: var(--gold); color: var(--black); }
+
+    .hero { min-height: 100vh; display: flex; align-items: center; position: relative; padding: 9rem 4rem 6rem; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 70% 40%, rgba(201,168,76,.09) 0%, transparent 60%), radial-gradient(ellipse 50% 50% at 10% 80%, rgba(201,168,76,.05) 0%, transparent 55%), linear-gradient(160deg, #0a0a0a 0%, #111318 100%); }
+    .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(201,168,76,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,.04) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 70% 70% at 60% 40%, black 20%, transparent 80%); }
+    .hero-scan { position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); animation: scan 5s linear infinite; opacity: .4; }
+    @keyframes scan { 0% { top: 0% } 100% { top: 100% } }
+
+    .hero-content { position: relative; max-width: 680px; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: .7rem; font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.8rem; opacity: 0; animation: fadeUp .8s .2s forwards; }
+    .hero-eyebrow::before { content:''; display:block; width:28px; height:1px; background:var(--gold); }
+    h1 { font-family: var(--font-display); font-size: clamp(3rem, 7vw, 5.8rem); font-weight: 300; line-height: 1.05; margin-bottom: 1.6rem; opacity: 0; animation: fadeUp .9s .35s forwards; }
+    h1 em { font-style: italic; color: var(--gold); }
+    .hero-sub { font-size: 1.05rem; color: var(--muted); line-height: 1.75; max-width: 480px; margin-bottom: 2.8rem; opacity: 0; animation: fadeUp .9s .5s forwards; }
+    .hero-actions { display: flex; gap: 1.2rem; flex-wrap: wrap; opacity: 0; animation: fadeUp .9s .65s forwards; }
+    .btn-primary { padding: .9rem 2.4rem; background: var(--gold); color: var(--black); border: none; cursor: pointer; font-family: var(--font-body); font-size: .85rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; transition: background .25s, transform .2s; display: inline-block; }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-outline { padding: .9rem 2.4rem; background: transparent; color: var(--white); border: 1px solid var(--border); cursor: pointer; font-family: var(--font-body); font-size: .85rem; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; transition: border-color .25s, color .25s; display: inline-block; }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    .hero-phones { position: absolute; right: 5rem; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: .8rem; align-items: flex-end; opacity: 0; animation: fadeIn 1s 1s forwards; }
+    .hero-phone-badge { display: flex; align-items: center; gap: .8rem; background: rgba(201,168,76,.08); border: 1px solid rgba(201,168,76,.2); padding: .7rem 1.4rem; }
+    .hero-phone-badge svg { color: var(--gold); }
+    .hero-phone-badge a { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; color: var(--white); text-decoration: none; letter-spacing: .04em; transition: color .2s; }
+    .hero-phone-badge a:hover { color: var(--gold); }
+
+    .trust-strip { display: flex; align-items: center; justify-content: center; gap: 3.5rem; flex-wrap: wrap; padding: 1.8rem 4rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--dark); }
+    .trust-item { display: flex; align-items: center; gap: .7rem; font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+    .trust-item svg { color: var(--gold); flex-shrink: 0; }
+
+    section { padding: 7rem 4rem; }
+    .section-label { display: inline-flex; align-items: center; gap: .7rem; font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
+    .section-label::before { content:''; width:24px; height:1px; background:var(--gold); }
+    h2 { font-family: var(--font-display); font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.4rem; }
+    h2 em { font-style: italic; color: var(--gold); }
+
+    #services { background: var(--dark); }
+    .services-header { max-width: 560px; margin-bottom: 4rem; }
+    .services-header p { color: var(--muted); line-height: 1.75; }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; border: 1px solid var(--border); }
+    .service-card { background: var(--card); padding: 2.4rem; position: relative; overflow: hidden; transition: background .3s; }
+    .service-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); transform: scaleX(0); transition: transform .4s; }
+    .service-card:hover { background: #1c2028; }
+    .service-card:hover::after { transform: scaleX(1); }
+    .service-icon { width: 48px; height: 48px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; margin-bottom: 1.6rem; color: var(--gold); transition: border-color .3s; }
+    .service-card:hover .service-icon { border-color: var(--gold); }
+    .service-card h3 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 400; margin-bottom: .8rem; }
+    .service-card p { color: var(--muted); font-size: .9rem; line-height: 1.7; }
+
+    #why { position: relative; overflow: hidden; }
+    .why-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+    .why-text p { color: var(--muted); line-height: 1.8; margin-bottom: 2rem; }
+    .why-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; border: 1px solid var(--border); }
+    .stat-box { background: var(--card); padding: 2rem; transition: background .3s; }
+    .stat-box:hover { background: #1c2028; }
+    .stat-num { font-family: var(--font-display); font-size: 3rem; font-weight: 300; color: var(--gold); line-height: 1; }
+    .stat-label { font-size: .8rem; color: var(--muted); margin-top: .4rem; letter-spacing: .06em; }
+
+    #contact { background: var(--dark); }
+    .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .contact-info p { color: var(--muted); line-height: 1.8; margin-bottom: 2rem; }
+
+    .call-buttons { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.2rem; }
+    .call-btn { display: flex; align-items: center; gap: 1rem; padding: 1.1rem 1.8rem; background: rgba(201,168,76,.08); border: 1px solid rgba(201,168,76,.25); color: var(--white); text-decoration: none; transition: background .25s, border-color .25s; }
+    .call-btn:hover { background: rgba(201,168,76,.18); border-color: var(--gold); }
+    .call-btn svg { color: var(--gold); flex-shrink: 0; }
+    .call-btn-inner strong { display: block; font-family: var(--font-display); font-size: 1.6rem; font-weight: 600; letter-spacing: .04em; line-height: 1; }
+    .call-btn-inner span { font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+    .email-btn { display: flex; align-items: center; gap: 1rem; padding: .9rem 1.4rem; border: 1px solid var(--border); color: var(--muted); text-decoration: none; font-size: .88rem; transition: border-color .25s, color .25s; margin-bottom: 1.4rem; }
+    .email-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .email-btn svg { color: var(--gold); flex-shrink: 0; }
+    .location-tag { display: flex; align-items: center; gap: .8rem; font-size: .85rem; color: var(--muted); }
+    .location-tag svg { color: var(--gold); }
+
+    .contact-form-wrap h3 { font-family: var(--font-display); font-size: 1.9rem; font-weight: 400; margin-bottom: 1.6rem; }
+    .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .form-group { display: flex; flex-direction: column; gap: .5rem; }
+    .form-group label { font-size: .73rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+    .form-group input, .form-group select, .form-group textarea { background: var(--card); border: 1px solid var(--border); color: var(--white); padding: .85rem 1rem; font-family: var(--font-body); font-size: .9rem; outline: none; transition: border-color .25s; resize: vertical; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); }
+    .form-group select option { background: var(--card); }
+    .form-submit { padding: 1rem 2.4rem; background: var(--gold); color: var(--black); border: none; cursor: pointer; font-family: var(--font-body); font-size: .85rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; align-self: flex-start; transition: background .25s, transform .2s; }
+    .form-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .success-msg { display: none; padding: 1rem 1.4rem; background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.3); color: var(--gold); font-size: .88rem; line-height: 1.6; }
+
+    footer { padding: 2.4rem 4rem; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-brand .footer-logo-main { font-family: var(--font-display); font-size: 1.7rem; color: var(--gold); font-weight: 700; }
+    .footer-brand .footer-logo-sub { font-size: .58rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-top: .1rem; }
+    footer p { font-size: .8rem; color: var(--muted); }
+    footer a { color: var(--gold); text-decoration: none; }
+
+    @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+    .reveal { opacity:0; transform:translateY(30px); transition: opacity .8s ease, transform .8s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    @media (max-width: 960px) {
+      nav { padding: 1.2rem 1.6rem; }
+      .nav-links { display: none; }
+      .hero { padding: 7rem 1.6rem 4rem; }
+      .hero-phones { display: none; }
+      section { padding: 5rem 1.6rem; }
+      .trust-strip { padding: 1.4rem 1.6rem; gap: 1.8rem; }
+      .why-inner, .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { padding: 2rem 1.6rem; flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <span class="nav-logo-main">APEX</span>
+    <span class="nav-logo-sub">Surveillance Solutions Limited</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="tel:4377550023" class="nav-cta">📞 Call Now</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-scan"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Toronto & GTA's Trusted Security Experts</p>
+    <h1>Professional Security<br/>&amp; <em>Networking</em><br/>Solutions</h1>
+    <p class="hero-sub">Protecting what matters with precision &amp; reliability. Expert CCTV installation, network setup, and low voltage solutions for homes and businesses across the GTA.</p>
+    <div class="hero-actions">
+      <a href="tel:4377550023" class="btn-primary">📞 Call for Free Consultation</a>
+      <a href="#services" class="btn-outline">Our Services</a>
+    </div>
+  </div>
+  <div class="hero-phones">
+    <div class="hero-phone-badge">
+      <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.5 3.18 2 2 0 012.5 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      <a href="tel:4377550023">437-755-0023</a>
+    </div>
+    <div class="hero-phone-badge">
+      <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.5 3.18 2 2 0 012.5 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      <a href="tel:6475534196">647-553-4196</a>
+    </div>
+  </div>
+</section>
+
+<div class="trust-strip">
+  <div class="trust-item">
+    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+    Licensed & Insured
+  </div>
+  <div class="trust-item">
+    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    Fast Response — GTA Wide
+  </div>
+  <div class="trust-item">
+    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M5 13l4 4L19 7"/></svg>
+    Experienced Technicians
+  </div>
+  <div class="trust-item">
+    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+    Serving Toronto & the GTA
+  </div>
+</div>
+
+<section id="services">
+  <div class="services-header reveal">
+    <p class="section-label">What We Offer</p>
+    <h2>Our <em>Services</em></h2>
+    <p>From residential camera installs to full commercial networking — we deliver tailored security solutions built to last.</p>
+  </div>
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <div class="service-icon">
+        <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/></svg>
+      </div>
+      <h3>CCTV Camera Installation</h3>
+      <p>High-definition security cameras for homes & businesses. Indoor, outdoor, and vandal-proof systems professionally installed and configured for maximum coverage.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"/></svg>
+      </div>
+      <h3>Network Setup & Access Points</h3>
+      <p>Reliable wired & wireless networking solutions. We design and install networks that are fast, secure, and tailored to your property's layout.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      </div>
+      <h3>Low Voltage Rough-In</h3>
+      <p>Pre-wiring for CCTV, speakers & smart systems during construction or renovation. Get the infrastructure right from day one.</p>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="why-inner">
+    <div class="why-text reveal">
+      <p class="section-label">Why Choose Apex</p>
+      <h2>Security You Can<br/><em>Truly Trust</em></h2>
+      <p>We are professional, educated and experienced technicians — trained experts you can count on. Every installation is carried out to the highest industry standards by licensed and insured professionals.</p>
+      <p>We provide reliable, local service with fast response times across the entire GTA. From the first call to final walkthrough, we make the process clear and stress-free.</p>
+      <a href="tel:4377550023" class="btn-primary">📞 Book a Free Survey</a>
+    </div>
+    <div class="why-stats reveal">
+      <div class="stat-box">
+        <div class="stat-num">GTA</div>
+        <div class="stat-label">Toronto & Greater Toronto Area</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">Reliable Local Service</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Licensed & Insured</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">HD</div>
+        <div class="stat-label">High-Definition Systems</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-info reveal">
+      <p class="section-label">Get In Touch</p>
+      <h2>Secure Your Property<br/><em>Today</em></h2>
+      <p>Call us for a free consultation. We'll assess your property and give you a clear, honest quote with no hidden costs.</p>
+      <div class="call-buttons">
+        <a href="tel:4377550023" class="call-btn">
+          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.5 3.18 2 2 0 012.5 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          <div class="call-btn-inner"><strong>437-755-0023</strong><span>Tap to call now</span></div>
+        </a>
+        <a href="tel:6475534196" class="call-btn">
+          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.5 3.18 2 2 0 012.5 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          <div class="call-btn-inner"><strong>647-553-4196</strong><span>Tap to call now</span></div>
+        </a>
+      </div>
+      <a href="mailto:apexcctvgta@gmail.com" class="email-btn">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        apexcctvgta@gmail.com
+      </a>
+      <div class="location-tag" style="margin-top:1.2rem;">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        Serving Toronto & the GTA
+      </div>
+    </div>
+
+    <div class="contact-form-wrap reveal">
+      <h3>Send Us a <em style="color:var(--gold);font-style:italic;">Message</em></h3>
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="fname" placeholder="John Smith"/>
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" id="fphone" placeholder="416 000 0000"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="femail" placeholder="john@example.com"/>
+        </div>
+        <div class="form-group">
+          <label>Service Needed</label>
+          <select id="fservice">
+            <option value="">Select a service…</option>
+            <option>CCTV Camera Installation</option>
+            <option>Network Setup & Access Points</option>
+            <option>Low Voltage Rough-In</option>
+            <option>Other / Not Sure</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Property Type</label>
+          <select id="ftype">
+            <option value="">Select property type…</option>
+            <option>Residential Home</option>
+            <option>Office / Business</option>
+            <option>Retail Store</option>
+            <option>Warehouse / Industrial</option>
+            <option>New Construction</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Tell Us More</label>
+          <textarea id="fmsg" rows="3" placeholder="Number of cameras, areas to cover, any questions…"></textarea>
+        </div>
+        <button class="form-submit" onclick="submitForm()">Send Message →</button>
+        <div class="success-msg" id="successMsg">✓ Opening your email app now! Or call us directly at 437-755-0023.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">
+    <div class="footer-logo-main">APEX</div>
+    <div class="footer-logo-sub">Surveillance Solutions Limited</div>
+  </div>
+  <p>© 2026 Apex Surveillance Solutions Limited. All rights reserved.</p>
+  <p>Toronto & GTA &nbsp;|&nbsp; <a href="tel:4377550023">437-755-0023</a></p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.padding = window.scrollY > 60 ? '1rem 4rem' : '1.4rem 4rem';
+  });
+
+  function submitForm() {
+    const name = document.getElementById('fname').value.trim();
+    const phone = document.getElementById('fphone').value.trim();
+    const email = document.getElementById('femail').value.trim();
+    const service = document.getElementById('fservice').value;
+    const type = document.getElementById('ftype').value;
+    const msg = document.getElementById('fmsg').value.trim();
+    if (!name || !email) { alert('Please fill in your name and email.'); return; }
+    const body = `Name: ${name}%0APhone: ${phone}%0AService: ${service}%0AProperty: ${type}%0AMessage: ${msg}`;
+    window.location.href = `mailto:apexcctvgta@gmail.com?subject=Quote Request – Apex Surveillance&body=${body}`;
+    document.getElementById('successMsg').style.display = 'block';
+    ['fname','fphone','femail','fservice','ftype','fmsg'].forEach(id => { const el = document.getElementById(id); if(el) el.value=''; });
+    setTimeout(() => document.getElementById('successMsg').style.display = 'none', 6000);
+  }
+</script>
+</body>
+</html>

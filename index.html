@@ -24,11 +24,7 @@
     html { scroll-behavior: smooth; }
     body { background: var(--black); color: var(--white); font-family: var(--font-body); font-weight: 300; overflow-x: hidden; }
 
-    /* SCANLINE */
-    body::before {
-      content:''; position:fixed; inset:0; pointer-events:none; z-index:9998;
-      background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.08) 3px, rgba(0,0,0,0.08) 4px);
-    }
+   
 
     /* ── NAV ── */
     nav {
@@ -186,8 +182,6 @@
     .service-card:hover .service-icon { border-color:rgba(201,168,76,0.5); background:var(--gold-dim); }
     .service-card h3 { font-family:var(--font-display); font-size:1.25rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:0.7rem; }
     .service-card p { color:var(--muted); font-size:0.87rem; line-height:1.7; }
-    .service-card-img { width:100%; height:140px; object-fit:cover; margin-bottom:1.2rem; filter:grayscale(30%) brightness(0.7); transition:filter 0.4s; }
-    .service-card:hover .service-card-img { filter:grayscale(0%) brightness(0.85); }
 
     /* ── INFRA GALLERY ── */
     #infra { background:var(--black); padding:6rem 3.5rem; }
@@ -240,7 +234,7 @@
     .process-step:last-child { border-right:none; }
     .process-step::after { content:attr(data-arrow); position:absolute; right:-14px; top:50%; transform:translateY(-50%); color:var(--gold); font-size:1.2rem; z-index:1; }
     .process-step:last-child::after { display:none; }
-    .step-num { font-family:var(--font-display); font-size:3rem; font-weight:800; color:rgba(201,168,76,0.12); line-height:1; margin-bottom:0.8rem; }
+    .step-num { font-family:var(--font-display); font-size:3rem; font-weight:800; color:LIGHTGOLDENRODYELLOW; line-height:1; margin-bottom:0.8rem; }
     .process-step h4 { font-family:var(--font-display); font-size:1rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--white); margin-bottom:0.5rem; }
     .process-step p { font-size:0.83rem; color:var(--muted); line-height:1.65; }
 
@@ -402,7 +396,6 @@
   </div>
   <div class="services-grid">
     <div class="service-card reveal reveal-delay-1">
-      <img class="service-card-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=70" alt="CCTV security cameras" onerror="this.style.display='none'"/>
       <div class="service-num">01</div>
       <div class="service-icon">
         <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/></svg>
@@ -411,7 +404,6 @@
       <p>High-definition security cameras for homes &amp; businesses. Indoor, outdoor, and vandal-proof systems professionally installed for maximum coverage.</p>
     </div>
     <div class="service-card reveal reveal-delay-2">
-      <img class="service-card-img" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=70" alt="Network infrastructure" onerror="this.style.display='none'"/>
       <div class="service-num">02</div>
       <div class="service-icon">
         <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"/></svg>
@@ -420,7 +412,6 @@
       <p>Robust enterprise networking and IT infrastructure deployment tailored for seamless data flow and high-speed operations throughout your property.</p>
     </div>
     <div class="service-card reveal reveal-delay-3">
-      <img class="service-card-img" src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=600&q=70" alt="Low voltage cabling" onerror="this.style.display='none'"/>
       <div class="service-num">03</div>
       <div class="service-icon">
         <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
@@ -429,7 +420,6 @@
       <p>Specialized structured cabling and electrical integrations for modern tech environments, following strict industrial standards.</p>
     </div>
     <div class="service-card reveal reveal-delay-1">
-      <img class="service-card-img" src="https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?w=600&q=70" alt="Access control panel" onerror="this.style.display='none'"/>
       <div class="service-num">04</div>
       <div class="service-icon">
         <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
@@ -438,7 +428,6 @@
       <p>Digital access management and hardware installation to secure entry points and track facility movement. Biometric and smart-card entry systems.</p>
     </div>
     <div class="service-card reveal reveal-delay-2">
-      <img class="service-card-img" src="https://images.unsplash.com/photo-1537420327992-d6e192287183?w=600&q=70" alt="System maintenance technician" onerror="this.style.display='none'"/>
       <div class="service-num">05</div>
       <div class="service-icon">
         <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
@@ -447,7 +436,6 @@
       <p>Comprehensive post-installation technical inspections and updates to ensure all security hardware operates at maximum efficiency.</p>
     </div>
     <div class="service-card reveal reveal-delay-3">
-      <img class="service-card-img" src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=70" alt="Security consulting" onerror="this.style.display='none'"/>
       <div class="service-num">06</div>
       <div class="service-icon">
         <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
@@ -456,7 +444,6 @@
       <p>Strategic blueprint development and risk assessment to identify vulnerabilities and engineer optimized security environments for your property.</p>
     </div>
     <div class="service-card reveal reveal-delay-1">
-      <img class="service-card-img" src="https://images.unsplash.com/photo-1593784991095-a205069470b6?w=600&q=70" alt="TV wall mounting" onerror="this.style.display='none'"/>
       <div class="service-num">07</div>
       <div class="service-icon">
         <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
@@ -465,7 +452,6 @@
       <p>Professional TV wall mounting with secure brackets and clean cable routing for home and business setups of any size.</p>
     </div>
     <div class="service-card reveal reveal-delay-2">
-      <img class="service-card-img" src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=70" alt="Wall mounting installation" onerror="this.style.display='none'"/>
       <div class="service-num">08</div>
       <div class="service-icon">
         <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
@@ -474,22 +460,12 @@
       <p>Safe and precise mounting of wall art, mirrors, and décor. Clean, professional installations that complement your interior layout.</p>
     </div>
     <div class="service-card reveal reveal-delay-3">
-      <img class="service-card-img" src="https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=600&q=70" alt="Ambient lighting" onerror="this.style.display='none'"/>
       <div class="service-num">09</div>
       <div class="service-icon">
         <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
       </div>
       <h3>Ambient Lighting</h3>
       <p>LED and ambient lighting installation to enhance visibility, safety, and atmosphere in residential and commercial spaces.</p>
-    </div>
-    <div class="service-card reveal reveal-delay-1">
-      <img class="service-card-img" src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=70" alt="Website and logo design" onerror="this.style.display='none'"/>
-      <div class="service-num">10</div>
-      <div class="service-icon">
-        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4M9 8l2 2-2 2m4 0h3"/></svg>
-      </div>
-      <h3>Website &amp; Logo Building</h3>
-      <p>Professional website design and custom logo creation to establish your brand online. From modern landing pages to full business sites and identity packages.</p>
     </div>
   </div>
 </section>
@@ -617,9 +593,9 @@
           <div class="call-btn-inner"><strong>647-553-4196</strong><span>Tap to call now</span></div>
         </a>
       </div>
-      <a href="/cdn-cgi/l/email-protection#741504110c17170002130015341319151d185a171b19" class="email-btn">
+      <a href="mailto:apexcctvgta@gmail.com" class="email-btn">
         <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        <span class="__cf_email__" data-cfemail="debfaebba6bdbdaaa8b9aabf9eb9b3bfb7b2f0bdb1b3">[email&#160;protected]</span>
+        apexcctvgta@gmail.com
       </a>
       <div class="location-tag" style="margin-top:1rem;">
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
@@ -657,7 +633,6 @@
             <option>TV Mounting</option>
             <option>Wall Mounting</option>
             <option>Ambient Lighting</option>
-            <option>Website &amp; Logo Building</option>
             <option>Other / Not Sure</option>
           </select>
         </div>
@@ -696,7 +671,7 @@
   <p>Toronto &amp; GTA &nbsp;|&nbsp; <a href="tel:4377550023">437-755-0023</a> &nbsp;|&nbsp; <a href="tel:6475534196">647-553-4196</a></p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
@@ -720,4 +695,11 @@
     if (!name || !email) { alert('Please fill in your name and email.'); return; }
     const body = `Name: ${name}%0APhone: ${phone}%0AService: ${service}%0AProperty: ${type}%0AMessage: ${msg}`;
     window.location.href = `mailto:apexcctvgta@gmail.com?subject=Quote Request – Apex Surveillance&body=${body}`;
-    document.getElementById('successMsg').sty
+    document.getElementById('successMsg').style.display = 'block';
+    ['fname','fphone','femail','fmsg'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('fservice').value = '';
+    document.getElementById('ftype').value = '';
+  }
+</script>
+</body>
+</html>

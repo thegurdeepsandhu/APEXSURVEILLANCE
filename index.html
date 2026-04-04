@@ -59,10 +59,10 @@
 
       background-position: center center;
       background-repeat: no-repeat;
-background-size: cover;
-background-attachment: scroll;
-  width: 100%;
-  height: 100%;
+	  background-size: cover;
+	  background-attachment: scroll;
+	  width: 100%;
+	  height: 100%;
     }
     .hero-grid {
       position:absolute; inset:0;
@@ -341,50 +341,108 @@ background-attachment: scroll;
     .hamburger.open span:nth-child(2) { opacity:0; }
     .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); background:var(--gold); }
 
-    /* MOBILE DRAWER */
+       /* MOBILE DRAWER - FIXED SCROLLABLE VERSION */
     .mobile-drawer {
-  display:flex;
-  opacity:0;
-  pointer-events:none;   /* ADD THIS */
-}
-
-.mobile-drawer.open {
-  opacity:1;
-  pointer-events:auto;   /* ADD THIS */
-}
-    .mobile-drawer ul { list-style:none; text-align:center; width:100%; }
-    .mobile-drawer ul li { border-bottom:1px solid var(--border); }
-    .mobile-drawer ul li a {
-      display:block; padding:1.3rem 2rem;
-      font-family:var(--font-display); font-size:1.8rem; font-weight:700;
-      letter-spacing:0.12em; text-transform:uppercase; text-decoration:none;
-      color:var(--white); transition:color .2s, background .2s;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(8, 10, 9, 0.98);
+      backdrop-filter: blur(12px);
+      z-index: 250;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: stretch;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 6rem 1.5rem 2.5rem;
+      gap: 1.5rem;
     }
-    .mobile-drawer ul li a:hover, .mobile-drawer ul li a.active { color:var(--gold); background:rgba(201,168,76,0.05); }
+    .mobile-drawer.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .mobile-drawer ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    .mobile-drawer ul li {
+      border-bottom: none;
+      width: 100%;
+    }
+    .mobile-drawer ul li a {
+      display: block;
+      padding: 0.9rem 1rem;
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--white);
+      background: rgba(255,255,255,0.03);
+      border-left: 3px solid transparent;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+    .mobile-drawer ul li a:hover, .mobile-drawer ul li a.active {
+      color: var(--gold);
+      background: rgba(201,168,76,0.08);
+      border-left-color: var(--gold);
+      transform: translateX(4px);
+    }
     .mobile-drawer-bottom {
-      margin-top:2.5rem; display:flex; flex-direction:column; align-items:center; gap:1rem; width:100%; padding:0 2rem;
+      margin-top: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.9rem;
+      width: 100%;
+    }
+    .mobile-drawer-call, .mobile-drawer-wa {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 1rem 1rem;
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      border-radius: 40px;
+      transition: all 0.2s;
+      width: 100%;
     }
     .mobile-drawer-call {
-      display:flex; align-items:center; gap:0.8rem; padding:1rem 2rem;
-      background:var(--gold); color:var(--black); text-decoration:none;
-      font-family:var(--font-display); font-size:1.4rem; font-weight:700; letter-spacing:0.06em;
-      width:100%; justify-content:center;
+      background: var(--gold);
+      color: var(--black);
     }
     .mobile-drawer-wa {
-      display:flex; align-items:center; gap:0.8rem; padding:0.9rem 2rem;
-      background:rgba(37,211,102,0.15); border:1px solid rgba(37,211,102,0.4);
-      color:#25D366; text-decoration:none;
-      font-family:var(--font-display); font-size:1.1rem; font-weight:600; letter-spacing:0.06em;
-      width:100%; justify-content:center;
+      background: rgba(37,211,102,0.12);
+      border: 1px solid rgba(37,211,102,0.5);
+      color: #25D366;
     }
-
+    .mobile-drawer-call svg, .mobile-drawer-wa svg {
+      width: 22px;
+      height: 22px;
+    }
     /* ── MOBILE ── */
     @media(max-width:960px){
       nav { padding:0.9rem 1.4rem; }
       .nav-links { display:none; }
       .nav-cta { display:none; }
       .hamburger { display:flex; }
-      .mobile-drawer { display:flex; }
       .hero { padding:7rem 1.4rem 4rem; }
       .hero-deco, .hero-phones { display:none; }
       section, #infra, .process-strip { padding:4.5rem 1.4rem; }
@@ -429,18 +487,17 @@ background-attachment: scroll;
 <!-- ── MOBILE DRAWER ── -->
 <div class="mobile-drawer" id="mobileDrawer">
   <ul>
-    <li><a href="#services" onclick="closeDrawer()">Services</a></li>
-    <li><a href="services.html">All Services</a></li>
-    <li><a href="contact.html">Contact Us</a></li>
-    <li><a href="inquiry.html">Send Inquiry</a></li>
-    <li><a href="social.html">Social Media</a></li>
+    <li><a href="services.html" onclick="closeDrawer()">📹 Services</a></li>
+    <li><a href="contact.html" onclick="closeDrawer()">📞 Contact Us</a></li>
+    <li><a href="inquiry.html" onclick="closeDrawer()">✉️ Send Inquiry</a></li>
+    <li><a href="social.html" onclick="closeDrawer()">📱 Social Media</a></li>
   </ul>
   <div class="mobile-drawer-bottom">
-    <a href="tel:4377550023" class="mobile-drawer-call">
+    <a href="tel:4377550023" class="mobile-drawer-call" onclick="closeDrawer()">
       <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.5 3.18 2 2 0 012.5 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
       437-755-0023
     </a>
-    <a href="https://wa.me/+14377550023" target="_blank" class="mobile-drawer-wa">
+    <a href="https://wa.me/+14377550023" target="_blank" class="mobile-drawer-wa" onclick="closeDrawer()">
       <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor"><path d="M16 .4C7.3.4.3 7.4.3 16c0 2.8.7 5.5 2.1 7.9L.2 31.8l8-2.1c2.3 1.2 4.9 1.8 7.8 1.8 8.7 0 15.7-7 15.7-15.6C31.7 7.4 24.7.4 16 .4z"/></svg>
       WhatsApp Us
     </a>
@@ -818,7 +875,52 @@ background-attachment: scroll;
     }
   });
   drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
+const hamburger = document.getElementById("hamburgerBtn");
+  const drawer = document.getElementById("mobileDrawer");
 
+  // Make sure elements exist
+   // FIXED: 3-bar menu toggles drawer, scroll works, links close drawer
+  const hamburger = document.getElementById("hamburgerBtn");
+  const drawer = document.getElementById("mobileDrawer");
+
+  // Make sure elements exist
+  if (hamburger && drawer) {
+    // Toggle drawer when hamburger is clicked
+    hamburger.addEventListener("click", function(e) {
+      e.stopPropagation();
+      const isOpen = drawer.classList.contains("open");
+      
+      if (isOpen) {
+        // Close drawer
+        hamburger.classList.remove("open");
+        drawer.classList.remove("open");
+        document.body.style.overflow = "auto";
+      } else {
+        // Open drawer
+        hamburger.classList.add("open");
+        drawer.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+    });
+  }
+
+  // Close drawer function (called when any link is clicked)
+  window.closeDrawer = function() {
+    const hamburger = document.getElementById("hamburgerBtn");
+    const drawer = document.getElementById("mobileDrawer");
+    if (hamburger) hamburger.classList.remove("open");
+    if (drawer) drawer.classList.remove("open");
+    document.body.style.overflow = "auto";
+  };
+
+  // Close drawer function (called when any link is clicked)
+  window.closeDrawer = function() {
+    const hamburger = document.getElementById("hamburgerBtn");
+    const drawer = document.getElementById("mobileDrawer");
+    if (hamburger) hamburger.classList.remove("open");
+    if (drawer) drawer.classList.remove("open");
+    document.body.style.overflow = "auto";
+  };
   // Form submit
   function submitForm() {
     const name = document.getElementById('fname').value.trim();
@@ -844,22 +946,39 @@ background-attachment: scroll;
   </svg>
 </a>
 <script>
+   
   const hamburger = document.getElementById("hamburgerBtn");
   const drawer = document.getElementById("mobileDrawer");
 
-  hamburger.addEventListener("click", () => {
-    hamburger.classList.toggle("open");
-    drawer.classList.toggle("open");
-
-    // Optional: prevent background scroll
-    document.body.style.overflow = drawer.classList.contains("open") ? "hidden" : "auto";
-  });
-
-  function closeDrawer() {
-    hamburger.classList.remove("open");
-    drawer.classList.remove("open");
-    document.body.style.overflow = "auto";
+  // Make sure elements exist
+  if (hamburger && drawer) {
+    // Toggle drawer when hamburger is clicked
+    hamburger.addEventListener("click", function(e) {
+      e.stopPropagation();
+      const isOpen = drawer.classList.contains("open");
+      
+      if (isOpen) {
+        // Close drawer
+        hamburger.classList.remove("open");
+        drawer.classList.remove("open");
+        document.body.style.overflow = "auto";
+      } else {
+        // Open drawer
+        hamburger.classList.add("open");
+        drawer.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+    });
   }
+
+  // Close drawer function (called when any link is clicked)
+  window.closeDrawer = function() {
+    const hamburger = document.getElementById("hamburgerBtn");
+    const drawer = document.getElementById("mobileDrawer");
+    if (hamburger) hamburger.classList.remove("open");
+    if (drawer) drawer.classList.remove("open");
+    document.body.style.overflow = "auto";
+  };
 </script>
 </body>
 </html>

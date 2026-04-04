@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us – Apex Surveillance Solutions Limited</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #080a09; --dark: #0e1210; --card: #141916; --panel: #1a1f1c;
+      --border: rgba(255,255,255,0.07); --gold: #c9a84c; --gold-light: #e8c97a;
+      --gold-dim: rgba(201,168,76,0.12); --white: #f2f0eb; --muted: #7a8a80;
+      --font-display: 'Barlow Condensed', sans-serif; --font-body: 'DM Sans', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--white); font-family: var(--font-body); font-weight: 300; overflow-x: hidden; }
+
+    nav { position:fixed; top:0; left:0; right:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:0.9rem 3.5rem; background:rgba(8,10,9,0.95); backdrop-filter:blur(16px); border-bottom:1px solid var(--border); }
+    .nav-logo { display:flex; align-items:center; gap:0.75rem; text-decoration:none; }
+    .nav-logo img { height:48px; width:auto; filter:drop-shadow(0 0 8px rgba(201,168,76,0.3)); }
+    .nav-logo-text { line-height:1.1; }
+    .nav-logo-main { font-family:var(--font-display); font-size:1.5rem; font-weight:800; letter-spacing:0.1em; color:var(--white); display:block; }
+    .nav-logo-main span { color:var(--gold); }
+    .nav-logo-sub { font-size:0.5rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--muted); display:block; }
+    .nav-links { display:flex; gap:2rem; list-style:none; }
+    .nav-links a { color:var(--muted); text-decoration:none; font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; transition:color .2s; }
+    .nav-links a:hover, .nav-links a.active { color:var(--gold); }
+    .nav-cta { display:flex; align-items:center; gap:0.5rem; padding:0.6rem 1.4rem; background:var(--gold); color:var(--black); font-size:0.8rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; transition:background .2s; }
+    .nav-cta:hover { background:var(--gold-light); }
+
+    .page-hero { padding: 10rem 3.5rem 5rem; background: var(--dark); position:relative; border-bottom:1px solid var(--border); overflow:hidden; }
+    .page-hero::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse 50% 80% at 20% 50%, rgba(201,168,76,0.07) 0%, transparent 60%); }
+    .page-hero-label { font-size:0.68rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem; display:flex; align-items:center; gap:0.6rem; }
+    .page-hero-label::before { content:''; width:22px; height:1px; background:var(--gold); }
+    .page-hero h1 { font-family:var(--font-display); font-size:clamp(3rem,7vw,5.5rem); font-weight:800; line-height:0.95; letter-spacing:0.03em; text-transform:uppercase; margin-bottom:1.2rem; }
+    .page-hero h1 em { font-style:normal; color:var(--gold); }
+    .page-hero p { color:var(--muted); font-size:1rem; line-height:1.8; max-width:560px; }
+
+    /* CONTACT GRID */
+    .contact-section { padding:5rem 3.5rem; }
+    .contact-grid { display:grid; grid-template-columns:1fr 1.4fr; gap:5rem; align-items:start; }
+
+    /* INFO SIDE */
+    .info-side h2 { font-family:var(--font-display); font-size:2.2rem; font-weight:800; text-transform:uppercase; letter-spacing:0.04em; margin-bottom:1rem; }
+    .info-side h2 em { font-style:normal; color:var(--gold); }
+    .info-side > p { color:var(--muted); line-height:1.8; font-size:0.93rem; margin-bottom:2.2rem; }
+
+    .contact-method { display:flex; align-items:flex-start; gap:1.1rem; padding:1.3rem 1.5rem; background:var(--card); border:1px solid var(--border); margin-bottom:1rem; text-decoration:none; color:var(--white); transition:background .2s, border-color .2s, transform .2s; }
+    .contact-method:hover { background:var(--panel); border-color:rgba(201,168,76,0.4); transform:translateX(4px); }
+    .contact-method-icon { width:44px; height:44px; background:var(--gold-dim); border:1px solid rgba(201,168,76,0.2); display:flex; align-items:center; justify-content:center; color:var(--gold); flex-shrink:0; }
+    .contact-method-text strong { display:block; font-family:var(--font-display); font-size:1.5rem; font-weight:700; letter-spacing:0.04em; line-height:1.1; }
+    .contact-method-text span { font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); }
+    .contact-method-text p { font-size:0.82rem; color:var(--muted); margin-top:0.3rem; }
+
+    .social-links-block { margin-top:2rem; }
+    .social-links-block h4 { font-family:var(--font-display); font-size:0.9rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; margin-bottom:1rem; color:var(--muted); }
+    .social-row { display:flex; gap:0.8rem; flex-wrap:wrap; }
+    .social-pill { display:flex; align-items:center; gap:0.5rem; padding:0.6rem 1.1rem; background:var(--card); border:1px solid var(--border); color:var(--muted); text-decoration:none; font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; transition:all .2s; }
+    .social-pill:hover { border-color:var(--gold); color:var(--gold); background:var(--gold-dim); }
+    .social-pill svg { width:16px; height:16px; }
+
+    .hours-block { margin-top:2rem; padding:1.5rem; background:var(--card); border:1px solid var(--border); }
+    .hours-block h4 { font-family:var(--font-display); font-size:1rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:1rem; color:var(--gold); }
+    .hours-row { display:flex; justify-content:space-between; padding:0.45rem 0; border-bottom:1px solid var(--border); font-size:0.83rem; }
+    .hours-row:last-child { border-bottom:none; }
+    .hours-row .day { color:var(--muted); }
+    .hours-row .time { color:var(--white); }
+
+    /* FORM SIDE */
+    .form-side { background:var(--dark); border:1px solid var(--border); padding:2.8rem; }
+    .form-side h3 { font-family:var(--font-display); font-size:2rem; font-weight:800; letter-spacing:0.04em; text-transform:uppercase; margin-bottom:0.5rem; }
+    .form-side h3 em { font-style:normal; color:var(--gold); }
+    .form-side > p { color:var(--muted); font-size:0.85rem; margin-bottom:2rem; line-height:1.7; }
+    .contact-form { display:flex; flex-direction:column; gap:1rem; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .form-group { display:flex; flex-direction:column; gap:0.4rem; }
+    .form-group label { font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted); }
+    .form-group input, .form-group select, .form-group textarea { background:var(--card); border:1px solid var(--border); color:var(--white); padding:0.82rem 0.95rem; font-family:var(--font-body); font-size:0.88rem; outline:none; transition:border-color .2s; resize:vertical; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color:var(--gold); }
+    .form-group select option { background:var(--card); }
+    .form-submit { padding:1rem 2.2rem; background:var(--gold); color:var(--black); border:none; cursor:pointer; font-family:var(--font-body); font-size:0.85rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; align-self:flex-start; transition:background .2s, transform .2s; }
+    .form-submit:hover { background:var(--gold-light); transform:translateY(-2px); }
+    .success-msg { display:none; padding:1rem 1.3rem; background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.3); color:var(--gold); font-size:0.85rem; line-height:1.6; margin-top:0.5rem; }
+
+    /* MAP AREA */
+    .map-section { padding:0 3.5rem 5rem; }
+    .map-label { font-size:0.68rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem; display:flex; align-items:center; gap:0.6rem; }
+    .map-label::before { content:''; width:22px; height:1px; background:var(--gold); }
+    .map-label h3 { font-family:var(--font-display); font-size:1.8rem; font-weight:800; text-transform:uppercase; margin-bottom:1.5rem; }
+    .map-frame { width:100%; height:420px; border:1px solid var(--border); filter:grayscale(80%) invert(90%) contrast(85%); }
+
+    /* SERVICE AREAS */
+    .areas-section { padding:4rem 3.5rem; background:var(--dark); border-top:1px solid var(--border); }
+    .areas-section h3 { font-family:var(--font-display); font-size:2rem; font-weight:800; text-transform:uppercase; letter-spacing:0.04em; margin-bottom:0.5rem; }
+    .areas-section h3 em { font-style:normal; color:var(--gold); }
+    .areas-section > p { color:var(--muted); font-size:0.9rem; margin-bottom:2rem; }
+    .areas-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:var(--border); border:1px solid var(--border); }
+    .area-tag { background:var(--card); padding:1rem 1.2rem; font-family:var(--font-display); font-size:0.85rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); transition:background .2s, color .2s; text-align:center; }
+    .area-tag:hover { background:var(--panel); color:var(--gold); }
+
+    footer { padding:2rem 3.5rem; border-top:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; background:var(--dark); }
+    .footer-brand { display:flex; align-items:center; gap:0.7rem; }
+    .footer-brand img { height:40px; width:auto; }
+    .footer-logo-main { font-family:var(--font-display); font-size:1.3rem; font-weight:800; letter-spacing:0.1em; color:var(--white); }
+    .footer-logo-main span { color:var(--gold); }
+    .footer-logo-sub { font-size:0.48rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); }
+    footer p { font-size:0.76rem; color:var(--muted); }
+    footer a { color:var(--gold); text-decoration:none; }
+
+    .whatsapp-float { position:fixed; bottom:20px; right:20px; width:55px; height:55px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(0,0,0,0.4); z-index:9999; transition:transform 0.2s; }
+    .whatsapp-float:hover { transform:scale(1.1); }
+    .whatsapp-float svg { width:28px; height:28px; fill:white; }
+
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity .8s ease, transform .8s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+
+    /* ── HAMBURGER ── */
+    .hamburger {
+      display:none; flex-direction:column; justify-content:center; gap:5px;
+      width:36px; height:36px; cursor:pointer; background:none; border:none; padding:4px; z-index:300;
+    }
+    .hamburger span { display:block; width:24px; height:2px; background:var(--white); transition:transform .3s, opacity .3s, background .2s; transform-origin:center; }
+    .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); background:var(--gold); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); background:var(--gold); }
+    .mobile-drawer {
+      display:none; position:fixed; top:0; left:0; right:0; bottom:0;
+      background:rgba(8,10,9,0.98); backdrop-filter:blur(20px);
+      z-index:250; flex-direction:column; align-items:center; justify-content:center;
+      opacity:0; transition:opacity .3s;
+    }
+    .mobile-drawer.open { opacity:1; }
+    .mobile-drawer ul { list-style:none; text-align:center; width:100%; }
+    .mobile-drawer ul li { border-bottom:1px solid var(--border); }
+    .mobile-drawer ul li a { display:block; padding:1.3rem 2rem; font-family:var(--font-display); font-size:1.8rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; color:var(--white); transition:color .2s, background .2s; }
+    .mobile-drawer ul li a:hover, .mobile-drawer ul li a.active { color:var(--gold); background:rgba(201,168,76,0.05); }
+    .mobile-drawer-bottom { margin-top:2.5rem; display:flex; flex-direction:column; align-items:center; gap:1rem; width:100%; padding:0 2rem; }
+    .mobile-drawer-call { display:flex; align-items:center; gap:0.8rem; padding:1rem 2rem; background:var(--gold); color:var(--black); text-decoration:none; font-family:var(--font-display); font-size:1.4rem; font-weight:700; letter-spacing:0.06em; width:100%; justify-content:center; }
+    .mobile-drawer-wa { display:flex; align-items:center; gap:0.8rem; padding:0.9rem 2rem; background:rgba(37,211,102,0.15); border:1px solid rgba(37,211,102,0.4); color:#25D366; text-decoration:none; font-family:var(--font-display); font-size:1.1rem; font-weight:600; letter-spacing:0.06em; width:100%; justify-content:center; }
+    @media(max-width:960px) {
+      nav { padding:0.9rem 1.4rem; }
+      .nav-links { display:none; }
+      .nav-cta { display:none; }
+      .hamburger { display:flex; }
+      .mobile-drawer { display:flex; }
+      .page-hero { padding:8rem 1.4rem 3.5rem; }
+      .contact-section { padding:3.5rem 1.4rem; }
+      .contact-grid { grid-template-columns:1fr; gap:2.5rem; }
+      .form-side { padding:1.8rem; }
+      .form-row { grid-template-columns:1fr; }
+      .map-section { padding:0 1.4rem 3.5rem; }
+      .areas-section { padding:3rem 1.4rem; }
+      .areas-grid { grid-template-columns:repeat(2,1fr); }
+      footer { padding:1.5rem 1.4rem; flex-direction:column; text-align:center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img src="logo.png" alt="Apex Surveillance Solutions"/>
+    <div class="nav-logo-text">
+      <span class="nav-logo-main">AP<span>EX</span></span>
+      <span class="nav-logo-sub">Surveillance Solutions Limited</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="contact.html" class="active">Contact Us</a></li>
+    <li><a href="inquiry.html">Send Inquiry</a></li>
+    <li><a href="social.html">Social Media</a></li>
+  </ul>
+  <a href="tel:4377550023" class="nav-cta">
+    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.5 3.18 2 2 0 012.5 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+    Call Now
+  </a>
+  <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">All Services</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+    <li><a href="inquiry.html">Send Inquiry</a></li>
+    <li><a href="social.html">Social Media</a></li>
+  </ul>
+  <div class="mobile-drawer-bottom">
+    <a href="tel:4377550023" class="mobile-drawer-call">
+      <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.5 3.18 2 2 0 012.5 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      437-755-0023
+    </a>
+    <a href="https://wa.me/+14377550023" target="_blank" class="mobile-drawer-wa">
+      <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor"><path d="M16 .4C7.3.4.3 7.4.3 16c0 2.8.7 5.5 2.1 7.9L.2 31.8l8-2.1c2.3 1.2 4.9 1.8 7.8 1.8 8.7 0 15.7-7 15.7-15.6C31.7 7.4 24.7.4 16 .4z"/></svg>
+      WhatsApp Us
+    </a>
+  </div>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-label">Get In Touch</div>
+  <h1>Contact <em>Us</em></h1>
+  <p>We're available across the GTA. Call, email, or message us — we respond fast and always offer a free on-site consultation with no obligation.</p>
+</div>
+
+<section class="contact-section">
+  <div class="contact-grid">
+
+    <div class="info-side reveal">
+      <h2>Reach Us <em>Directly</em></h2>
+      <p>Our team is ready to help you plan and install the right security solution for your property. All consultations are free — we come to you.</p>
+
+      <a href="tel:4377550023" class="contact-method">
+        <div class="contact-method-icon">
+          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.5 3.18 2 2 0 012.5 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <div class="contact-method-text">
+          <strong>437-755-0023</strong>
+          <span>Primary Line — Tap to Call</span>
+          <p>Available 7 days a week across the GTA</p>
+        </div>
+      </a>
+
+      <a href="tel:6475534196" class="contact-method">
+        <div class="contact-method-icon">
+          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.5 3.18 2 2 0 012.5 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <div class="contact-method-text">
+          <strong>647-553-4196</strong>
+          <span>Secondary Line — Tap to Call</span>
+          <p>Alternative number for quick response</p>
+        </div>
+      </a>
+
+      <a href="mailto:info@apexsurveillance.ca" class="contact-method">
+        <div class="contact-method-icon">
+          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div class="contact-method-text">
+          <strong>info@apexsurveillance.ca</strong>
+          <span>Email Us — We Reply Within Hours</span>
+          <p>Send project details, photos, or questions</p>
+        </div>
+      </a>
+
+      <a href="https://wa.me/+14377550023" target="_blank" class="contact-method">
+        <div class="contact-method-icon">
+          <svg width="22" height="22" viewBox="0 0 32 32" fill="currentColor" style="color:var(--gold)"><path d="M16 .4C7.3.4.3 7.4.3 16c0 2.8.7 5.5 2.1 7.9L.2 31.8l8-2.1c2.3 1.2 4.9 1.8 7.8 1.8 8.7 0 15.7-7 15.7-15.6C31.7 7.4 24.7.4 16 .4zm7.5 19.4c-.4-.2-2.3-1.1-2.6-1.2-.4-.1-.6-.2-.9.2-.3.4-1 1.2-1.2 1.4-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3-1.9-1.1-1-1.9-2.2-2.1-2.6-.2-.4 0-.6.2-.8l.6-.6c.2-.2.3-.4.4-.6.1-.2.1-.4 0-.6-.1-.2-.9-2.1-1.2-2.9-.3-.8-.6-.7-.9-.7h-.7c-.3 0-.7.1-1 .4-.4.4-1.3 1.3-1.3 3.1s1.3 3.6 1.5 3.9c.2.2 2.6 4 6.3 5.6.9.4 1.6.6 2.1.8.9.3 1.7.2 2.3.1.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.6.2-1.8l-.8-.4z"/></svg>
+        </div>
+        <div class="contact-method-text">
+          <strong>WhatsApp Us</strong>
+          <span>+1 437-755-0023 — Instant Message</span>
+          <p>Send photos of your property for a faster quote</p>
+        </div>
+      </a>
+
+      <div class="hours-block">
+        <h4>📅 Our Hours</h4>
+        <div class="hours-row"><span class="day">Monday – Sunday</span><span class="time">8:00 AM – 10:00 PM</span></div>
+        <div class="hours-row"><span class="day">Emergency Service</span><span class="time">24/7 Available</span></div>
+      </div>
+
+      <div class="social-links-block">
+        <h4>Follow Us</h4>
+        <div class="social-row">
+          <a href="https://www.instagram.com/apexsurveillance.ca" class="social-pill" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            Instagram
+          </a>
+          <a href="https://www.tiktok.com/@apexsurveillance.ca" class="social-pill" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M21 8.02c-1.2 0-2.36-.39-3.32-1.1V15.5c0 3.59-2.91 6.5-6.5 6.5S4.68 19.09 4.68 15.5 7.59 9 11.18 9c.39 0 .77.04 1.14.11v3.2c-.36-.11-.74-.17-1.14-.17-1.84 0-3.34 1.5-3.34 3.36s1.5 3.36 3.34 3.36 3.34-1.5 3.34-3.36V2h3.16c.23 2.2 2 3.92 4.32 4.02v2z"/>
+          </svg>
+          TikTok
+        </a>
+          <a href="https://www.facebook.com/apexsurveillance.ca" class="social-pill">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            Facebook
+          </a>
+          <a href="https://wa.me/+14377550023" class="social-pill" target="_blank">
+            <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 .4C7.3.4.3 7.4.3 16c0 2.8.7 5.5 2.1 7.9L.2 31.8l8-2.1c2.3 1.2 4.9 1.8 7.8 1.8 8.7 0 15.7-7 15.7-15.6C31.7 7.4 24.7.4 16 .4z"/></svg>
+            WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-side reveal">
+      <h3>Send a <em>Message</em></h3>
+      <p>Fill out the form below and we'll get back to you within a few hours with a clear, no-obligation quote.</p>
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name *</label>
+            <input type="text" id="fname" placeholder="John Smith"/>
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" id="fphone" placeholder="416 000 0000"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address *</label>
+          <input type="email" id="femail" placeholder="john@example.com"/>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Service Needed</label>
+            <select id="fservice">
+              <option value="">Select a service…</option>
+              <option>CCTV Camera Installation</option>
+              <option>Network Setup & Access Points</option>
+              <option>Low Voltage Rough-In</option>
+              <option>Access Control</option>
+              <option>System Maintenance</option>
+              <option>Security Consulting</option>
+              <option>TV Mounting</option>
+              <option>Wall Mounting</option>
+              <option>Ambient Lighting</option>
+              <option>Website / Logo Design</option>
+              <option>Other / Not Sure</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Property Type</label>
+            <select id="ftype">
+              <option value="">Select type…</option>
+              <option>Residential Home</option>
+              <option>Office / Business</option>
+              <option>Retail Store</option>
+              <option>Warehouse / Industrial</option>
+              <option>New Construction</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>City / Area</label>
+          <input type="text" id="fcity" placeholder="Toronto, Mississauga, Brampton…"/>
+        </div>
+        <div class="form-group">
+          <label>Tell Us More</label>
+          <textarea id="fmsg" rows="4" placeholder="Number of cameras, property size, any specific requirements…"></textarea>
+        </div>
+        <button class="form-submit" onclick="submitForm()">Send Message →</button>
+        <div class="success-msg" id="successMsg">✓ Message sent! We'll be in touch shortly. Or call us directly at 437-755-0023.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="map-section reveal">
+  <div class="map-label">Service Coverage</div>
+  <iframe 
+    class="map-frame"
+    src="https://www.google.com/maps?q=Toronto,Mississauga,Brampton,Vaughan,Markham,Richmond Hill,Oakville,Burlington,Scarborough,Etobicoke,North York,Ajax,Pickering,Whitby,Oshawa,Welland,Niagara Falls&z=8&output=embed"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    title="Apex Surveillance Service Area - GTA & Southern Ontario">
+  </iframe>
+</div>
+
+<div class="areas-section reveal">
+  <h3>Areas We <em>Serve</em></h3>
+  <p>Proudly serving the entire Greater Toronto Area and surrounding regions.</p>
+  <div class="areas-grid">
+    <div class="area-tag">Toronto</div>
+    <div class="area-tag">Mississauga</div>
+    <div class="area-tag">Brampton</div>
+    <div class="area-tag">Vaughan</div>
+    <div class="area-tag">Markham</div>
+    <div class="area-tag">Richmond Hill</div>
+    <div class="area-tag">Oakville</div>
+    <div class="area-tag">Burlington</div>
+    <div class="area-tag">Scarborough</div>
+    <div class="area-tag">Etobicoke</div>
+    <div class="area-tag">North York</div>
+    <div class="area-tag">Ajax</div>
+    <div class="area-tag">Pickering</div>
+    <div class="area-tag">Whitby</div>
+    <div class="area-tag">Oshawa</div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">
+    <img src="logo.png" alt="Apex Surveillance Solutions"/>
+    <div>
+      <div class="footer-logo-main">AP<span>EX</span></div>
+      <div class="footer-logo-sub">Surveillance Solutions Limited</div>
+    </div>
+  </div>
+  <p>© 2026 Apex Surveillance Solutions Limited. All rights reserved.</p>
+  <p>Toronto & GTA &nbsp;|&nbsp; <a href="tel:4377550023">437-755-0023</a> &nbsp;|&nbsp; <a href="tel:6475534196">647-553-4196</a></p>
+</footer>
+
+<a href="https://wa.me/+14377550023?text=Hi%20I%20am%20interested%20in%20your%20services" class="whatsapp-float" target="_blank">
+  <svg viewBox="0 0 32 32"><path d="M16 .4C7.3.4.3 7.4.3 16c0 2.8.7 5.5 2.1 7.9L.2 31.8l8-2.1c2.3 1.2 4.9 1.8 7.8 1.8 8.7 0 15.7-7 15.7-15.6C31.7 7.4 24.7.4 16 .4zm0 28.7c-2.5 0-5-.7-7.1-2l-.5-.3-4.7 1.2 1.3-4.6-.3-.5c-1.4-2.2-2.1-4.7-2.1-7.2C2.6 8.6 8.6 2.6 16 2.6s13.4 6 13.4 13.3-6 13.2-13.4 13.2zm7.5-9.8c-.4-.2-2.3-1.1-2.6-1.2-.4-.1-.6-.2-.9.2-.3.4-1 1.2-1.2 1.4-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3-1.9-1.1-1-1.9-2.2-2.1-2.6-.2-.4 0-.6.2-.8l.6-.6c.2-.2.3-.4.4-.6.1-.2.1-.4 0-.6-.1-.2-.9-2.1-1.2-2.9-.3-.8-.6-.7-.9-.7h-.7c-.3 0-.7.1-1 .4-.4.4-1.3 1.3-1.3 3.1s1.3 3.6 1.5 3.9c.2.2 2.6 4 6.3 5.6.9.4 1.6.6 2.1.8.9.3 1.7.2 2.3.1.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.6.2-1.8l-.8-.4z"/></svg>
+</a>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').style.padding = window.scrollY > 60 ? '0.6rem 3.5rem' : '0.9rem 3.5rem';
+  });
+  function submitForm() {
+    const name = document.getElementById('fname').value.trim();
+    const phone = document.getElementById('fphone').value.trim();
+    const email = document.getElementById('femail').value.trim();
+    const service = document.getElementById('fservice').value;
+    const type = document.getElementById('ftype').value;
+    const city = document.getElementById('fcity').value.trim();
+    const msg = document.getElementById('fmsg').value.trim();
+    if (!name || !email) { alert('Please fill in your name and email.'); return; }
+    const body = `Name: ${name}%0APhone: ${phone}%0ACity: ${city}%0AService: ${service}%0AProperty: ${type}%0AMessage: ${msg}`;
+    window.location.href = `mailto:info@apexsurveillance.ca?subject=Contact Form – Apex Surveillance&body=${body}`;
+    document.getElementById('successMsg').style.display = 'block';
+  }
+  // Hamburger
+  const btn = document.getElementById('hamburgerBtn');
+  const drawer = document.getElementById('mobileDrawer');
+  function closeDrawer() { btn.classList.remove('open'); drawer.classList.remove('open'); document.body.style.overflow = ''; }
+  btn.addEventListener('click', () => {
+    const isOpen = drawer.classList.contains('open');
+    if (isOpen) closeDrawer();
+    else { btn.classList.add('open'); drawer.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  });
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
+</script>
+</body>
+</html>

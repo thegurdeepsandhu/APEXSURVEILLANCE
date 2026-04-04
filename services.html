@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Services – Apex Surveillance Solutions Limited</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #080a09; --dark: #0e1210; --card: #141916; --panel: #1a1f1c;
+      --border: rgba(255,255,255,0.07); --gold: #c9a84c; --gold-light: #e8c97a;
+      --gold-dim: rgba(201,168,76,0.12); --white: #f2f0eb; --muted: #7a8a80;
+      --font-display: 'Barlow Condensed', sans-serif; --font-body: 'DM Sans', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--white); font-family: var(--font-body); font-weight: 300; overflow-x: hidden; }
+
+    /* NAV */
+    nav { position:fixed; top:0; left:0; right:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:0.9rem 3.5rem; background:rgba(8,10,9,0.95); backdrop-filter:blur(16px); border-bottom:1px solid var(--border); }
+    .nav-logo { display:flex; align-items:center; gap:0.75rem; text-decoration:none; }
+    .nav-logo img { height:48px; width:auto; filter:drop-shadow(0 0 8px rgba(201,168,76,0.3)); }
+    .nav-logo-text { line-height:1.1; }
+    .nav-logo-main { font-family:var(--font-display); font-size:1.5rem; font-weight:800; letter-spacing:0.1em; color:var(--white); display:block; }
+    .nav-logo-main span { color:var(--gold); }
+    .nav-logo-sub { font-size:0.5rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--muted); display:block; }
+    .nav-links { display:flex; gap:2rem; list-style:none; }
+    .nav-links a { color:var(--muted); text-decoration:none; font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; transition:color .2s; }
+    .nav-links a:hover, .nav-links a.active { color:var(--gold); }
+    .nav-cta { display:flex; align-items:center; gap:0.5rem; padding:0.6rem 1.4rem; background:var(--gold); color:var(--black); font-size:0.8rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; transition:background .2s; }
+    .nav-cta:hover { background:var(--gold-light); }
+
+    /* PAGE HERO */
+    .page-hero { padding: 10rem 3.5rem 5rem; background: var(--dark); position:relative; border-bottom:1px solid var(--border); overflow:hidden; }
+    .page-hero::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse 50% 80% at 80% 50%, rgba(201,168,76,0.06) 0%, transparent 60%); }
+    .page-hero-label { font-size:0.68rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem; display:flex; align-items:center; gap:0.6rem; }
+    .page-hero-label::before { content:''; width:22px; height:1px; background:var(--gold); }
+    .page-hero h1 { font-family:var(--font-display); font-size:clamp(3rem,7vw,5.5rem); font-weight:800; line-height:0.95; letter-spacing:0.03em; text-transform:uppercase; margin-bottom:1.2rem; }
+    .page-hero h1 em { font-style:normal; color:var(--gold); }
+    .page-hero p { color:var(--muted); font-size:1rem; line-height:1.8; max-width:560px; }
+
+    /* SERVICES GRID */
+    .services-section { padding: 5rem 3.5rem; }
+    .services-intro { max-width:700px; margin-bottom:4rem; }
+    .services-intro p { color:var(--muted); line-height:1.8; font-size:0.95rem; }
+
+    .service-full-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--border); border:1px solid var(--border); }
+    .service-full-card { background:var(--card); padding:0; position:relative; overflow:hidden; transition:background .3s; display:flex; flex-direction:column; }
+    .service-full-card:hover { background:var(--panel); }
+    .service-full-card::before { content:''; position:absolute; top:0; left:0; width:0; height:3px; background:linear-gradient(90deg, var(--gold), var(--gold-light)); transition:width 0.5s ease; }
+    .service-full-card:hover::before { width:100%; }
+    .service-img { width:100%; height:200px; object-fit:contain; filter:grayscale(30%) brightness(0.65); transition:filter 0.5s, transform 0.6s; }
+    .service-full-card:hover .service-img { filter:grayscale(0%) brightness(0.85); transform:scale(1.04); }
+    .service-img-wrap { overflow:hidden; display: flex;position:relative; height:200px; background:var(--panel); }
+    .service-img-tag { position:absolute; top:0.8rem; left:0.8rem; background:rgba(201,168,76,0.9); color:var(--black); font-family:var(--font-display); font-size:0.58rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; padding:0.25rem 0.55rem; z-index:2; }
+    .service-body { padding:2rem 1.8rem; flex:1; display:flex; flex-direction:column; }
+    .service-num { font-family:var(--font-display); font-size:0.65rem; letter-spacing:0.22em; color:var(--muted); margin-bottom:0.6rem; }
+    .service-icon-row { display:flex; align-items:center; gap:0.8rem; margin-bottom:1rem; }
+    .service-icon { width:40px; height:40px; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; color:var(--gold); flex-shrink:0; transition:border-color .3s, background .3s; }
+    .service-full-card:hover .service-icon { border-color:rgba(201,168,76,0.5); background:var(--gold-dim); }
+    .service-body h3 { font-family:var(--font-display); font-size:1.3rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:0.8rem; }
+    .service-body p { color:var(--muted); font-size:0.86rem; line-height:1.75; margin-bottom:0.8rem; flex:1; }
+    .service-features { list-style:none; display:flex; flex-direction:column; gap:0.4rem; margin-top:0.8rem; }
+    .service-features li { font-size:0.78rem; color:var(--muted); display:flex; align-items:center; gap:0.5rem; }
+    .service-features li::before { content:'›'; color:var(--gold); font-size:1rem; font-weight:700; }
+    .service-cta-row { margin-top:1.4rem; }
+    .service-cta-row a { display:inline-flex; align-items:center; gap:0.4rem; font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); text-decoration:none; border-bottom:1px solid rgba(201,168,76,0.3); padding-bottom:0.2rem; transition:border-color .2s; }
+    .service-cta-row a:hover { border-color:var(--gold); }
+
+    /* CTA BANNER */
+    .cta-banner { background:var(--dark); padding:5rem 3.5rem; text-align:center; border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+    .cta-banner h2 { font-family:var(--font-display); font-size:clamp(2rem,5vw,3.5rem); font-weight:800; text-transform:uppercase; letter-spacing:0.04em; margin-bottom:1rem; }
+    .cta-banner h2 em { font-style:normal; color:var(--gold); }
+    .cta-banner p { color:var(--muted); font-size:1rem; margin-bottom:2rem; }
+    .cta-buttons { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+    .btn-primary { padding:0.95rem 2.2rem; background:var(--gold); color:var(--black); font-family:var(--font-body); font-size:0.82rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; transition:background .2s, transform .2s; display:inline-block; }
+    .btn-primary:hover { background:var(--gold-light); transform:translateY(-2px); }
+    .btn-outline { padding:0.95rem 2.2rem; background:transparent; color:var(--white); border:1px solid rgba(255,255,255,0.15); font-family:var(--font-body); font-size:0.82rem; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; transition:border-color .2s, color .2s; display:inline-block; }
+    .btn-outline:hover { border-color:var(--gold); color:var(--gold); }
+
+    /* FOOTER */
+    footer { padding:2rem 3.5rem; border-top:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; background:var(--dark); }
+    .footer-brand { display:flex; align-items:center; gap:0.7rem; }
+    .footer-brand img { height:40px; width:auto; }
+    .footer-logo-main { font-family:var(--font-display); font-size:1.3rem; font-weight:800; letter-spacing:0.1em; color:var(--white); }
+    .footer-logo-main span { color:var(--gold); }
+    .footer-logo-sub { font-size:0.48rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); }
+    footer p { font-size:0.76rem; color:var(--muted); }
+    footer a { color:var(--gold); text-decoration:none; }
+
+    /* WHATSAPP */
+    .whatsapp-float { position:fixed; bottom:20px; right:20px; width:55px; height:55px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(0,0,0,0.4); z-index:9999; transition:transform 0.2s; }
+    .whatsapp-float:hover { transform:scale(1.1); }
+    .whatsapp-float svg { width:28px; height:28px; fill:white; }
+
+    /* REVEAL */
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity .8s ease, transform .8s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .reveal-delay-1 { transition-delay:.1s; } .reveal-delay-2 { transition-delay:.2s; } .reveal-delay-3 { transition-delay:.3s; }
+
+
+    /* ── HAMBURGER ── */
+    .hamburger {
+      display:none; flex-direction:column; justify-content:center; gap:5px;
+      width:36px; height:36px; cursor:pointer; background:none; border:none; padding:4px; z-index:300;
+    }
+    .hamburger span { display:block; width:24px; height:2px; background:var(--white); transition:transform .3s, opacity .3s, background .2s; transform-origin:center; }
+    .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); background:var(--gold); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); background:var(--gold); }
+    .mobile-drawer {
+      display:none; position:fixed; top:0; left:0; right:0; bottom:0;
+      background:rgba(8,10,9,0.98); backdrop-filter:blur(20px);
+      z-index:250; flex-direction:column; align-items:center; justify-content:center;
+      opacity:0; transition:opacity .3s;
+    }
+    .mobile-drawer.open { opacity:1; }
+    .mobile-drawer ul { list-style:none; text-align:center; width:100%; }
+    .mobile-drawer ul li { border-bottom:1px solid var(--border); }
+    .mobile-drawer ul li a { display:block; padding:1.3rem 2rem; font-family:var(--font-display); font-size:1.8rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; color:var(--white); transition:color .2s, background .2s; }
+    .mobile-drawer ul li a:hover, .mobile-drawer ul li a.active { color:var(--gold); background:rgba(201,168,76,0.05); }
+    .mobile-drawer-bottom { margin-top:2.5rem; display:flex; flex-direction:column; align-items:center; gap:1rem; width:100%; padding:0 2rem; }
+    .mobile-drawer-call { display:flex; align-items:center; gap:0.8rem; padding:1rem 2rem; background:var(--gold); color:var(--black); text-decoration:none; font-family:var(--font-display); font-size:1.4rem; font-weight:700; letter-spacing:0.06em; width:100%; justify-content:center; }
+    .mobile-drawer-wa { display:flex; align-items:center; gap:0.8rem; padding:0.9rem 2rem; background:rgba(37,211,102,0.15); border:1px solid rgba(37,211,102,0.4); color:#25D366; text-decoration:none; font-family:var(--font-display); font-size:1.1rem; font-weight:600; letter-spacing:0.06em; width:100%; justify-content:center; }
+    @media(max-width:960px) {
+      nav { padding:0.9rem 1.4rem; }
+      .nav-links { display:none; }
+      .nav-cta { display:none; }
+      .hamburger { display:flex; }
+      .mobile-drawer { display:flex; }
+      .page-hero { padding:8rem 1.4rem 3.5rem; }
+      .services-section { padding:3.5rem 1.4rem; }
+      .service-full-grid { grid-template-columns:1fr; }
+      .cta-banner { padding:3.5rem 1.4rem; }
+      footer { padding:1.5rem 1.4rem; flex-direction:column; text-align:center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img src="logo.png" alt="Apex Surveillance Solutions"/>
+    <div class="nav-logo-text">
+      <span class="nav-logo-main">AP<span>EX</span></span>
+      <span class="nav-logo-sub">Surveillance Solutions Limited</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html" class="active">Services</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+    <li><a href="inquiry.html">Send Inquiry</a></li>
+    <li><a href="social.html">Social Media</a></li>
+  </ul>
+  <a href="tel:4377550023" class="nav-cta">
+    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.5 3.18 2 2 0 012.5 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+    Call Now
+  </a>
+  <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">All Services</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+    <li><a href="inquiry.html">Send Inquiry</a></li>
+    <li><a href="social.html">Social Media</a></li>
+  </ul>
+  <div class="mobile-drawer-bottom">
+    <a href="tel:4377550023" class="mobile-drawer-call">
+      <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.5 3.18 2 2 0 012.5 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      437-755-0023
+    </a>
+    <a href="https://wa.me/+14377550023" target="_blank" class="mobile-drawer-wa">
+      <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor"><path d="M16 .4C7.3.4.3 7.4.3 16c0 2.8.7 5.5 2.1 7.9L.2 31.8l8-2.1c2.3 1.2 4.9 1.8 7.8 1.8 8.7 0 15.7-7 15.7-15.6C31.7 7.4 24.7.4 16 .4z"/></svg>
+      WhatsApp Us
+    </a>
+  </div>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-label">What We Offer</div>
+  <h1>Our <em>Services</em></h1>
+  <p>From single-camera home installs to full commercial security ecosystems — Apex delivers precision-engineered solutions built for the Greater Toronto Area.</p>
+</div>
+
+<section class="services-section">
+  <div class="services-intro reveal">
+    <p>Every service we offer is backed by licensed technicians, premium-grade hardware, and a commitment to clean, professional installation. We don't cut corners — we build systems that last.</p>
+  </div>
+
+  <div class="service-full-grid">
+
+    <!-- 01 CCTV -->
+    <div class="service-full-card reveal">
+      <div class="service-img-wrap">
+        <div class="service-img-tag">Most Popular</div>
+        <img class="service-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="CCTV Installation"/>
+      </div>
+      <div class="service-body">
+        <div class="service-num">01</div>
+        <div class="service-icon-row">
+          <div class="service-icon"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/></svg></div>
+          <h3>CCTV Installation</h3>
+        </div>
+        <p>High-definition surveillance camera systems for homes and businesses. We handle site surveys, camera placement, DVR/NVR setup, remote viewing configuration, and full cable routing — leaving your property clean and secure.</p>
+        <ul class="service-features">
+          <li>HD & 4K camera systems (indoor & outdoor)</li>
+          <li>Night vision & wide-angle coverage</li>
+          <li>Remote viewing via smartphone app</li>
+          <li>Vandal-proof & weatherproof units</li>
+          <li>DVR/NVR setup & hard drive installation</li>
+          <li>Residential & commercial systems</li>
+        </ul>
+        <div class="service-cta-row"><a href="inquiry.html">Get a Free Quote →</a></div>
+      </div>
+    </div>
+
+    <!-- 02 NETWORKING -->
+    <div class="service-full-card reveal reveal-delay-1">
+      <div class="service-img-wrap">
+        <img class="service-img" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80" alt="IT Networking"/>
+      </div>
+      <div class="service-body">
+        <div class="service-num">02</div>
+        <div class="service-icon-row">
+          <div class="service-icon"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"/></svg></div>
+          <h3>Website & Network Services</h3>
+        </div>
+        <p>Enterprise-grade IT networking and website design tailored to your business needs. From structured cabling to WiFi access points and custom website builds — we ensure seamless connectivity and a powerful online presence.</p>
+        <ul class="service-features">
+          <li>Structured cabling & patch panels</li>
+          <li>WiFi access point installation</li>
+          <li>Network switches & router configuration</li>
+          <li>Custom website design & development</li>
+          <li>Logo & brand identity design</li>
+          <li>VPN & remote access setup</li>
+        </ul>
+        <div class="service-cta-row"><a href="inquiry.html">Get a Free Quote →</a></div>
+      </div>
+    </div>
+
+    <!-- 03 LOW VOLTAGE -->
+    <div class="service-full-card reveal reveal-delay-2">
+      <div class="service-img-wrap">
+        <img class="service-img" src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=800&q=80" alt="Low Voltage Wiring"/>
+      </div>
+      <div class="service-body">
+        <div class="service-num">03</div>
+        <div class="service-icon-row">
+          <div class="service-icon"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+          <h3>Low Voltage Solutions</h3>
+        </div>
+        <p>Specialized low voltage rough-in and structured cabling for modern tech environments. We follow strict industry standards and ensure all cabling is future-proof, clean, and labeled for easy maintenance.</p>
+        <ul class="service-features">
+          <li>Cat5e / Cat6 / Cat6a data cabling</li>
+          <li>Coaxial & fiber optic runs</li>
+          <li>In-wall & in-ceiling cable routing</li>
+          <li>New construction rough-in</li>
+          <li>Conduit installation</li>
+          <li>Cable labelling & documentation</li>
+        </ul>
+        <div class="service-cta-row"><a href="inquiry.html">Get a Free Quote →</a></div>
+      </div>
+    </div>
+
+    <!-- 04 ACCESS CONTROL -->
+    <div class="service-full-card reveal">
+      <div class="service-img-wrap">
+        <img class="service-img" src="https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?w=800&q=80" alt="Access Control"/>
+      </div>
+      <div class="service-body">
+        <div class="service-num">04</div>
+        <div class="service-icon-row">
+          <div class="service-icon"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+          <h3>Access Control</h3>
+        </div>
+        <p>Secure your entry points with smart digital access management systems. We install and configure everything from keypad and card-reader systems to full biometric fingerprint and facial recognition entry.</p>
+        <ul class="service-features">
+          <li>Keypad & PIN entry systems</li>
+          <li>Smart card / key fob readers</li>
+          <li>Biometric fingerprint scanners</li>
+          <li>Electric door strikes & magnetic locks</li>
+          <li>Intercom & video doorbell systems</li>
+          <li>Multi-door management software</li>
+        </ul>
+        <div class="service-cta-row"><a href="inquiry.html">Get a Free Quote →</a></div>
+      </div>
+    </div>
+
+    <!-- 05 MAINTENANCE -->
+    <div class="service-full-card reveal reveal-delay-1">
+      <div class="service-img-wrap">
+        <img class="service-img" src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80" alt="System Maintenance"/>
+      </div>
+      <div class="service-body">
+        <div class="service-num">05</div>
+        <div class="service-icon-row">
+          <div class="service-icon"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
+          <h3>System Maintenance</h3>
+        </div>
+        <p>Keep your security systems running at peak performance with our scheduled maintenance and emergency repair services. We service all brands and systems — whether we installed it or not.</p>
+        <ul class="service-features">
+          <li>Camera cleaning & lens adjustment</li>
+          <li>DVR/NVR firmware updates</li>
+          <li>Hard drive health checks & replacement</li>
+          <li>Network connectivity troubleshooting</li>
+          <li>Cable & connector inspection</li>
+          <li>Annual service contracts available</li>
+        </ul>
+        <div class="service-cta-row"><a href="inquiry.html">Get a Free Quote →</a></div>
+      </div>
+    </div>
+
+    <!-- 06 CONSULTING -->
+    <div class="service-full-card reveal reveal-delay-2">
+      <div class="service-img-wrap">
+        <img class="service-img" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80" alt="Security Consulting"/>
+      </div>
+      <div class="service-body">
+        <div class="service-num">06</div>
+        <div class="service-icon-row">
+          <div class="service-icon"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg></div>
+          <h3>Security Consulting</h3>
+        </div>
+        <p>Not sure what you need? Our certified consultants perform on-site vulnerability assessments and create a custom security blueprint for your property — identifying blind spots, recommending hardware, and planning optimal coverage.</p>
+        <ul class="service-features">
+          <li>On-site security assessment</li>
+          <li>Vulnerability & blind spot analysis</li>
+          <li>Custom security system design</li>
+          <li>Budget-based recommendations</li>
+          <li>Compliance & insurance guidance</li>
+          <li>Free initial consultation</li>
+        </ul>
+        <div class="service-cta-row"><a href="inquiry.html">Get a Free Quote →</a></div>
+      </div>
+    </div>
+
+    <!-- 07 TV MOUNTING -->
+    <div class="service-full-card reveal">
+      <div class="service-img-wrap">
+        <img class="service-img" src="https://geeksonsite.com/wp-content/uploads/2024/11/tv-mounting-deal.png" alt="TV Mounting"/>
+      </div>
+      <div class="service-body">
+        <div class="service-num">07</div>
+        <div class="service-icon-row">
+          <div class="service-icon"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg></div>
+          <h3>TV Mounting</h3>
+        </div>
+        <p>Professional TV wall mounting for any size screen in any room. We locate wall studs, mount the bracket securely, and route all cables in-wall for a clean, wire-free look. Perfect for homes, offices, bars, and restaurants.</p>
+        <ul class="service-features">
+          <li>All TV sizes & brands supported</li>
+          <li>Fixed, tilting & full-motion mounts</li>
+          <li>In-wall HDMI & power cable routing</li>
+          <li>Soundbar mounting included</li>
+          <li>Commercial display installs</li>
+          <li>Drywall repair if needed</li>
+        </ul>
+        <div class="service-cta-row"><a href="inquiry.html">Get a Free Quote →</a></div>
+      </div>
+    </div>
+
+    <!-- 08 WALL MOUNTING -->
+    <div class="service-full-card reveal reveal-delay-1">
+      <div class="service-img-wrap">
+        <img class="service-img" src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80" alt="Wall Mounting"/>
+      </div>
+      <div class="service-body">
+        <div class="service-num">08</div>
+        <div class="service-icon-row">
+          <div class="service-icon"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div>
+          <h3>Wall Mounting</h3>
+        </div>
+        <p>Safe and precise mounting of wall art, mirrors, shelves, and décor. We use the right anchors and hardware for every wall type — drywall, plaster, concrete, or brick — ensuring everything is level and secure.</p>
+        <ul class="service-features">
+          <li>Art, mirrors & frames</li>
+          <li>Floating shelves & cabinets</li>
+          <li>Concrete & brick drilling</li>
+          <li>Gallery wall arrangement</li>
+          <li>Heavy item mounting</li>
+          <li>Commercial & office installs</li>
+        </ul>
+        <div class="service-cta-row"><a href="inquiry.html">Get a Free Quote →</a></div>
+      </div>
+    </div>
+
+    <!-- 09 LIGHTING -->
+    <div class="service-full-card reveal reveal-delay-2">
+      <div class="service-img-wrap">
+        <img class="service-img" src="https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=800&q=80" alt="Ambient Lighting"/>
+      </div>
+      <div class="service-body">
+        <div class="service-num">09</div>
+        <div class="service-icon-row">
+          <div class="service-icon"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></div>
+          <h3>Ambient Lighting</h3>
+        </div>
+        <p>LED strip lighting, pot lights, accent lighting, and smart lighting systems professionally installed to enhance the atmosphere, security, and energy efficiency of your residential or commercial space.</p>
+        <ul class="service-features">
+          <li>LED strip & tape light installation</li>
+          <li>Pot light / recessed lighting</li>
+          <li>Smart lighting (Philips Hue etc.)</li>
+          <li>Exterior security lighting</li>
+          <li>Under-cabinet & accent lighting</li>
+          <li>Dimmer switch installation</li>
+        </ul>
+        <div class="service-cta-row"><a href="inquiry.html">Get a Free Quote →</a></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="cta-banner reveal">
+  <h2>Ready to <em>Secure</em> Your Property?</h2>
+  <p>Free consultations available across Toronto & the Greater Toronto Area. No obligation, no hidden fees.</p>
+  <div class="cta-buttons">
+    <a href="tel:4377550023" class="btn-primary">📞 437-755-0023</a>
+    <a href="inquiry.html" class="btn-outline">Send an Inquiry</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">
+    <img src="logo.png" alt="Apex Surveillance Solutions"/>
+    <div>
+      <div class="footer-logo-main">AP<span>EX</span></div>
+      <div class="footer-logo-sub">Surveillance Solutions Limited</div>
+    </div>
+  </div>
+  <p>© 2026 Apex Surveillance Solutions Limited. All rights reserved.</p>
+  <p>Toronto & GTA &nbsp;|&nbsp; <a href="tel:4377550023">437-755-0023</a> &nbsp;|&nbsp; <a href="tel:6475534196">647-553-4196</a></p>
+</footer>
+
+<a href="https://wa.me/+14377550023?text=Hi%20I%20am%20interested%20in%20your%20services" class="whatsapp-float" target="_blank">
+  <svg viewBox="0 0 32 32"><path d="M16 .4C7.3.4.3 7.4.3 16c0 2.8.7 5.5 2.1 7.9L.2 31.8l8-2.1c2.3 1.2 4.9 1.8 7.8 1.8 8.7 0 15.7-7 15.7-15.6C31.7 7.4 24.7.4 16 .4zm0 28.7c-2.5 0-5-.7-7.1-2l-.5-.3-4.7 1.2 1.3-4.6-.3-.5c-1.4-2.2-2.1-4.7-2.1-7.2C2.6 8.6 8.6 2.6 16 2.6s13.4 6 13.4 13.3-6 13.2-13.4 13.2zm7.5-9.8c-.4-.2-2.3-1.1-2.6-1.2-.4-.1-.6-.2-.9.2-.3.4-1 1.2-1.2 1.4-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3-1.9-1.1-1-1.9-2.2-2.1-2.6-.2-.4 0-.6.2-.8l.6-.6c.2-.2.3-.4.4-.6.1-.2.1-.4 0-.6-.1-.2-.9-2.1-1.2-2.9-.3-.8-.6-.7-.9-.7h-.7c-.3 0-.7.1-1 .4-.4.4-1.3 1.3-1.3 3.1s1.3 3.6 1.5 3.9c.2.2 2.6 4 6.3 5.6.9.4 1.6.6 2.1.8.9.3 1.7.2 2.3.1.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.6.2-1.8l-.8-.4z"/></svg>
+</a>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').style.padding = window.scrollY > 60 ? '0.6rem 3.5rem' : '0.9rem 3.5rem';
+  });
+  // Hamburger
+  const btn = document.getElementById('hamburgerBtn');
+  const drawer = document.getElementById('mobileDrawer');
+  function closeDrawer() { btn.classList.remove('open'); drawer.classList.remove('open'); document.body.style.overflow = ''; }
+  btn.addEventListener('click', () => {
+    const isOpen = drawer.classList.contains('open');
+    if (isOpen) closeDrawer();
+    else { btn.classList.add('open'); drawer.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  });
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
+</script>
+</body>
+</html>
